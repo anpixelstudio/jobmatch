@@ -1,0 +1,84 @@
+name: Deploy SaaS HR
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-saas-hr
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          tools: composer:v2
+          coverage: none
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install PHP deps
+        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+
+      - name: Install JS deps & build
+        run: |
+          bun install --frozen-lockfile || bun install
+          bun run build
+
+      - name: Pack release
+        run: |
+          COPYFILE_DISABLE=1 tar -czf /tmp/saas-hr-release.tar.gz \
+            --exclude=node_modules \
+            --exclude=.git \
+            --exclude=screenshots \
+            --exclude=tests \
+            --exclude=.env \
+            --exclude=database/*.sqlite \
+            --exclude=storage/logs \
+            --exclude=storage/framework/cache/data \
+            --exclude=storage/framework/sessions \
+            --exclude=storage/framework/views \
+            --exclude=vendor \
+            .
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          cat >> ~/.ssh/config <<EOF
+          Host pve
+            HostName ${{ secrets.DEPLOY_JUMP_HOST }}
+            User root
+            IdentityFile ~/.ssh/deploy_key
+            IdentitiesOnly yes
+            StrictHostKeyChecking no
+          Host website-mahes
+            HostName ${{ secrets.DEPLOY_HOST }}
+            User ubuntu
+            IdentityFile ~/.ssh/deploy_key
+            IdentitiesOnly yes
+            StrictHostKeyChecking no
+            ProxyCommand ssh -W %h:%p pve
+          EOF
+
+      - name: Upload & activate release
+        run: |
+          scp /tmp/saas-hr-release.tar.gz website-mahes:/tmp/saas-hr-release.tar.gz
+          scp deploy/remote.sh website-mahes:/tmp/saas-hr-remote.sh
+          ssh website-mahes 'bash /tmp/saas-hr-remote.sh'
