@@ -5,7 +5,9 @@ export default function AppLogo() {
                 A
             </div>
             <div className="ml-2 grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold tracking-tight">Jobmatch</span>
+                <span className="truncate font-semibold tracking-tight">
+                    Jobmatch
+                </span>
                 <span className="truncate text-[11px] text-muted-foreground group-data-[collapsible=icon]:hidden">
                     Resume Analyzer
                 </span>

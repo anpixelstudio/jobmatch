@@ -50,7 +50,12 @@ export function FieldSelect({
     return (
         <div className={cn('w-full', className)}>
             {name ? (
-                <input type="hidden" name={name} value={value} disabled={disabled} />
+                <input
+                    type="hidden"
+                    name={name}
+                    value={value}
+                    disabled={disabled}
+                />
             ) : null}
             <Select
                 value={radixValue}
@@ -66,7 +71,11 @@ export function FieldSelect({
                 >
                     <SelectValue placeholder={placeholder} />
                 </SelectTrigger>
-                <SelectContent side={side} position="popper" className="z-50 max-h-64">
+                <SelectContent
+                    side={side}
+                    position="popper"
+                    className="z-50 max-h-64"
+                >
                     {options.map((opt) => (
                         <SelectItem
                             key={opt.value === '' ? EMPTY : opt.value}

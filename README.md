@@ -51,12 +51,12 @@ php artisan jobmatch:import-kaggle --limit=200   # sample cepat
 
 ## Halaman
 
-| URL | Fitur |
-| --- | --- |
-| `/dashboard` | Metrik, kategori, lowongan |
-| `/uploads` | Parameter job + unggah CV |
-| `/chat` | Jobmatch Bot: kriteria → list CV match |
-| `/candidates` | Bank kandidat + detail + status ATS |
+| URL           | Fitur                                  |
+| ------------- | -------------------------------------- |
+| `/dashboard`  | Metrik, kategori, lowongan             |
+| `/uploads`    | Parameter job + unggah CV              |
+| `/chat`       | Jobmatch Bot: kriteria → list CV match |
+| `/candidates` | Bank kandidat + detail + status ATS    |
 
 ## Deploy
 

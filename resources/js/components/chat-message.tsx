@@ -60,7 +60,9 @@ export function ChatMessageBubble({
                 }`}
             >
                 {isUser ? (
-                    <p className="whitespace-pre-wrap">{stripMarkdown(content)}</p>
+                    <p className="whitespace-pre-wrap">
+                        {stripMarkdown(content)}
+                    </p>
                 ) : (
                     <>
                         {(structured || picks.length > 0 || analysis) && (
@@ -72,8 +74,11 @@ export function ChatMessageBubble({
                                     )}
                                 </p>
                                 {structured?.closing ? (
-                                    <p className="mt-2 text-xs text-muted-foreground text-pretty">
-                                        {cleanAssistantText(structured.closing, true)}
+                                    <p className="mt-2 text-xs text-pretty text-muted-foreground">
+                                        {cleanAssistantText(
+                                            structured.closing,
+                                            true,
+                                        )}
                                     </p>
                                 ) : null}
                             </div>
@@ -92,14 +97,17 @@ export function ChatMessageBubble({
                         {picks.length > 0 ? (
                             <div className="space-y-2">
                                 <p className="px-0.5 text-[10px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
-                                    Rekomendasi · {Math.min(picks.length, 5)} teratas
+                                    Rekomendasi · {Math.min(picks.length, 5)}{' '}
+                                    teratas
                                 </p>
                                 {picks.slice(0, 5).map((pick) => (
                                     <CandidatePickCard
                                         key={pick.id}
                                         pick={pick}
                                         onPreview={() =>
-                                            onPreviewCandidate?.(pick.candidate.id)
+                                            onPreviewCandidate?.(
+                                                pick.candidate.id,
+                                            )
                                         }
                                     />
                                 ))}
@@ -267,11 +275,13 @@ function cleanAssistantText(text: string, openingOnly: boolean): string {
                 !/peringkat\s*\d/i.test(l) &&
                 !/^\d+\.\s/.test(l) &&
                 !/\(\d{1,3}%\)/.test(l) &&
-                !/kandidat\s+[A-Z][A-Z\s\-]*#\d+/i.test(l),
+                !/kandidat\s+[A-Z][A-Z\s-]*#\d+/i.test(l),
         );
 
     if (openingOnly) {
-        return lines.slice(0, 2).join(' ') || cleaned.split(/\n+/)[0] || cleaned;
+        return (
+            lines.slice(0, 2).join(' ') || cleaned.split(/\n+/)[0] || cleaned
+        );
     }
 
     return lines.join('\n') || cleaned;

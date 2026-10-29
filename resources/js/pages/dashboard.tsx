@@ -48,7 +48,12 @@ type Props = {
     }[];
 };
 
-export default function Dashboard({ stats, categoryDist, jobs, recent }: Props) {
+export default function Dashboard({
+    stats,
+    categoryDist,
+    jobs,
+    recent,
+}: Props) {
     const maxCategory = Math.max(...categoryDist.map((c) => c.total), 1);
 
     return (
@@ -106,7 +111,9 @@ export default function Dashboard({ stats, categoryDist, jobs, recent }: Props) 
                 <div className="grid gap-4 lg:grid-cols-5">
                     <Card className="border-border/70 shadow-none lg:col-span-3">
                         <CardHeader className="pb-3">
-                            <CardTitle className="text-base">Distribusi kategori</CardTitle>
+                            <CardTitle className="text-base">
+                                Distribusi kategori
+                            </CardTitle>
                             <CardDescription>
                                 Top kategori dari dataset Kaggle + unggahan
                             </CardDescription>
@@ -121,14 +128,21 @@ export default function Dashboard({ stats, categoryDist, jobs, recent }: Props) 
                                 </EmptyHint>
                             ) : (
                                 categoryDist.map((row) => {
-                                    const pct = Math.round((row.total / maxCategory) * 100);
+                                    const pct = Math.round(
+                                        (row.total / maxCategory) * 100,
+                                    );
                                     return (
-                                        <div key={row.category} className="space-y-1.5">
+                                        <div
+                                            key={row.category}
+                                            className="space-y-1.5"
+                                        >
                                             <div className="flex items-center justify-between gap-3 text-xs">
                                                 <span className="truncate font-medium tracking-wide">
-                                                    {formatCategory(row.category)}
+                                                    {formatCategory(
+                                                        row.category,
+                                                    )}
                                                 </span>
-                                                <span className="tabular-nums text-muted-foreground">
+                                                <span className="text-muted-foreground tabular-nums">
                                                     {row.total}
                                                 </span>
                                             </div>
@@ -147,7 +161,9 @@ export default function Dashboard({ stats, categoryDist, jobs, recent }: Props) 
 
                     <Card className="border-border/70 shadow-none lg:col-span-2">
                         <CardHeader className="pb-3">
-                            <CardTitle className="text-base">Mulai screening</CardTitle>
+                            <CardTitle className="text-base">
+                                Mulai screening
+                            </CardTitle>
                             <CardDescription>
                                 Alur cepat: unggah → chat kriteria → shortlist
                             </CardDescription>
@@ -162,15 +178,19 @@ export default function Dashboard({ stats, categoryDist, jobs, recent }: Props) 
                                     <MessageSquare className="size-4 opacity-80" />
                                 </Link>
                             </Button>
-                            <Button variant="outline" className="justify-between" asChild>
+                            <Button
+                                variant="outline"
+                                className="justify-between"
+                                asChild
+                            >
                                 <Link href="/uploads">
                                     Unggah CV / atur lowongan
                                     <Sparkles className="size-4 opacity-70" />
                                 </Link>
                             </Button>
                             <div className="mt-2 rounded-lg border border-dashed bg-muted/30 p-3 text-xs leading-relaxed text-muted-foreground">
-                                Tip: tulis seperti HR biasa — contoh “IT Python SQL 3
-                                tahun” — bot akan ranking CV dari korpus.
+                                Tip: tulis seperti HR biasa — contoh “IT Python
+                                SQL 3 tahun” — bot akan ranking CV dari korpus.
                             </div>
                         </CardContent>
                     </Card>
@@ -180,8 +200,12 @@ export default function Dashboard({ stats, categoryDist, jobs, recent }: Props) 
                     <Card className="border-border/70 shadow-none">
                         <CardHeader className="flex-row items-center justify-between space-y-0 pb-3">
                             <div>
-                                <CardTitle className="text-base">Lowongan aktif</CardTitle>
-                                <CardDescription>Parameter job untuk matching</CardDescription>
+                                <CardTitle className="text-base">
+                                    Lowongan aktif
+                                </CardTitle>
+                                <CardDescription>
+                                    Parameter job untuk matching
+                                </CardDescription>
                             </div>
                             <Link
                                 href="/uploads"
@@ -204,11 +228,15 @@ export default function Dashboard({ stats, categoryDist, jobs, recent }: Props) 
                                                 {job.title}
                                             </p>
                                             <p className="truncate text-xs text-muted-foreground">
-                                                {job.department || '—'} · {job.applicants}{' '}
-                                                pelamar terhubung
+                                                {job.department || '—'} ·{' '}
+                                                {job.applicants} pelamar
+                                                terhubung
                                             </p>
                                         </div>
-                                        <Badge variant="secondary" className="shrink-0 capitalize">
+                                        <Badge
+                                            variant="secondary"
+                                            className="shrink-0 capitalize"
+                                        >
                                             {job.status}
                                         </Badge>
                                     </div>
@@ -219,8 +247,12 @@ export default function Dashboard({ stats, categoryDist, jobs, recent }: Props) 
 
                     <Card className="border-border/70 shadow-none">
                         <CardHeader className="pb-3">
-                            <CardTitle className="text-base">Aktivitas terbaru</CardTitle>
-                            <CardDescription>CV yang baru masuk ke indeks</CardDescription>
+                            <CardTitle className="text-base">
+                                Aktivitas terbaru
+                            </CardTitle>
+                            <CardDescription>
+                                CV yang baru masuk ke indeks
+                            </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-2">
                             {recent.length === 0 ? (
@@ -237,10 +269,14 @@ export default function Dashboard({ stats, categoryDist, jobs, recent }: Props) 
                                                 {c.name}
                                             </p>
                                             <p className="truncate text-xs text-muted-foreground">
-                                                {formatCategory(c.category)} · {c.source}
+                                                {formatCategory(c.category)} ·{' '}
+                                                {c.source}
                                             </p>
                                         </div>
-                                        <Badge variant="outline" className="shrink-0">
+                                        <Badge
+                                            variant="outline"
+                                            className="shrink-0"
+                                        >
                                             {c.review_status}
                                         </Badge>
                                     </Link>
@@ -269,7 +305,9 @@ function Metric({
         <Card className="border-border/70 shadow-none">
             <CardContent className="flex items-start justify-between gap-3 p-4">
                 <div className="min-w-0 space-y-1">
-                    <p className="text-xs font-medium text-muted-foreground">{title}</p>
+                    <p className="text-xs font-medium text-muted-foreground">
+                        {title}
+                    </p>
                     <p className="text-2xl font-semibold tracking-tight tabular-nums">
                         {value}
                     </p>

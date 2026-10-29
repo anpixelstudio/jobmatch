@@ -22,12 +22,12 @@ screenshots/
 
 ## Quick preview
 
-| Modul | Contoh |
-|-------|--------|
-| Auth | ![login](./01-auth/02-login.png) |
+| Modul     | Contoh                                        |
+| --------- | --------------------------------------------- |
+| Auth      | ![login](./01-auth/02-login.png)              |
 | Dashboard | ![dashboard](./02-dashboard/01-dashboard.png) |
-| Chat | ![chat](./03-chat/01-chat-main.png) |
-| Kandidat | ![candidates](./04-candidates/01-list.png) |
-| Unggah | ![uploads](./05-uploads/01-uploads.png) |
+| Chat      | ![chat](./03-chat/01-chat-main.png)           |
+| Kandidat  | ![candidates](./04-candidates/01-list.png)    |
+| Unggah    | ![uploads](./05-uploads/01-uploads.png)       |
 
 > Gambar di tabel di atas merujuk file relatif; buka folder masing-masing untuk full-size PNG.

@@ -131,7 +131,8 @@ export default function ChatIndex({
                                 Jobmatch Chat
                             </h1>
                             <span className="hidden rounded-full bg-teal-800/10 px-2 py-0.5 text-[10px] font-medium text-teal-900 sm:inline dark:text-teal-200">
-                                {stats.ready_candidates.toLocaleString('id-ID')} CV
+                                {stats.ready_candidates.toLocaleString('id-ID')}{' '}
+                                CV
                             </span>
                         </div>
                         <p className="truncate text-xs text-muted-foreground">
@@ -140,7 +141,10 @@ export default function ChatIndex({
                     </div>
                     <div className="flex shrink-0 items-center gap-2">
                         {ai?.enabled ? (
-                            <Badge variant="secondary" className="hidden font-normal sm:inline-flex">
+                            <Badge
+                                variant="secondary"
+                                className="hidden font-normal sm:inline-flex"
+                            >
                                 {ai.model}
                             </Badge>
                         ) : null}
@@ -163,7 +167,9 @@ export default function ChatIndex({
                                 <Sparkles className="size-4" />
                                 <span
                                     className={`absolute -right-0.5 -bottom-0.5 size-2.5 rounded-full border-2 border-card ${
-                                        isTyping ? 'animate-pulse bg-amber-400' : 'bg-emerald-400'
+                                        isTyping
+                                            ? 'animate-pulse bg-amber-400'
+                                            : 'bg-emerald-400'
                                     }`}
                                 />
                             </div>
@@ -210,7 +216,7 @@ export default function ChatIndex({
                         </div>
 
                         <div className="shrink-0 border-t border-teal-900/8 bg-gradient-to-t from-muted/40 to-transparent p-3 md:p-4 dark:border-teal-400/10">
-                            <div className="mb-2.5 flex gap-1.5 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                            <div className="mb-2.5 flex [scrollbar-width:none] gap-1.5 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                                 {prompts.map((p) => {
                                     const active = message === p.value;
                                     return (
@@ -268,9 +274,14 @@ export default function ChatIndex({
                                             name="message"
                                             value={message}
                                             rows={2}
-                                            onChange={(e) => setMessage(e.target.value)}
+                                            onChange={(e) =>
+                                                setMessage(e.target.value)
+                                            }
                                             onKeyDown={(e) => {
-                                                if (e.key === 'Enter' && !e.shiftKey) {
+                                                if (
+                                                    e.key === 'Enter' &&
+                                                    !e.shiftKey
+                                                ) {
                                                     e.preventDefault();
                                                     if (
                                                         message.trim() &&
@@ -291,7 +302,9 @@ export default function ChatIndex({
                                                 name="job_opening_id"
                                                 value={jobId}
                                                 onValueChange={setJobId}
-                                                disabled={processing || isTyping}
+                                                disabled={
+                                                    processing || isTyping
+                                                }
                                                 size="sm"
                                                 side="top"
                                                 className="max-w-[46%]"
@@ -312,7 +325,9 @@ export default function ChatIndex({
                                                 {message ? (
                                                     <button
                                                         type="button"
-                                                        onClick={() => setMessage('')}
+                                                        onClick={() =>
+                                                            setMessage('')
+                                                        }
                                                         className="text-[11px] text-muted-foreground hover:text-foreground"
                                                     >
                                                         Hapus
@@ -343,7 +358,9 @@ export default function ChatIndex({
                         <div className="flex items-center gap-2 border-b border-teal-900/8 px-4 py-3 dark:border-teal-400/10">
                             <Users className="size-4 text-teal-800 dark:text-teal-400" />
                             <div className="min-w-0">
-                                <p className="text-sm font-medium">Hasil match</p>
+                                <p className="text-sm font-medium">
+                                    Hasil match
+                                </p>
                                 <p className="text-[11px] text-muted-foreground">
                                     {matches.length > 0
                                         ? `${matches.length} kandidat terurut`
@@ -358,7 +375,8 @@ export default function ChatIndex({
                                         <Users className="size-4" />
                                     </div>
                                     <p className="text-sm text-muted-foreground">
-                                        Belum ada ranking. Kirim kriteria di chat.
+                                        Belum ada ranking. Kirim kriteria di
+                                        chat.
                                     </p>
                                 </div>
                             ) : (
@@ -366,7 +384,9 @@ export default function ChatIndex({
                                     <button
                                         key={m.id}
                                         type="button"
-                                        onClick={() => openPreview(m.candidate.id)}
+                                        onClick={() =>
+                                            openPreview(m.candidate.id)
+                                        }
                                         className="group block w-full rounded-xl bg-muted/25 p-3 text-left transition hover:bg-teal-800/8 hover:ring-1 hover:ring-teal-800/20"
                                     >
                                         <div className="flex items-start justify-between gap-2">
@@ -378,8 +398,10 @@ export default function ChatIndex({
                                                     {m.candidate.name}
                                                 </p>
                                                 <p className="mt-1 truncate text-[11px] text-muted-foreground">
-                                                    {formatCategory(m.candidate.category)} ·{' '}
-                                                    {m.candidate.source}
+                                                    {formatCategory(
+                                                        m.candidate.category,
+                                                    )}{' '}
+                                                    · {m.candidate.source}
                                                 </p>
                                             </div>
                                             <span className="shrink-0 rounded-lg bg-teal-800 px-2 py-0.5 text-[11px] font-semibold text-white tabular-nums">
@@ -426,9 +448,9 @@ function EmptyState({
                 <p className="text-base font-semibold tracking-tight">
                     Mau cari kandidat seperti apa?
                 </p>
-                <p className="text-sm text-muted-foreground text-pretty">
-                    Jobmatch mencocokkan dari {count.toLocaleString('id-ID')} CV siap pakai.
-                    Pilih contoh atau ketik kriteria sendiri.
+                <p className="text-sm text-pretty text-muted-foreground">
+                    Jobmatch mencocokkan dari {count.toLocaleString('id-ID')} CV
+                    siap pakai. Pilih contoh atau ketik kriteria sendiri.
                 </p>
             </div>
             <div className="grid w-full gap-2 sm:grid-cols-2">

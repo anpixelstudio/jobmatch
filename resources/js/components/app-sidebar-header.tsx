@@ -17,7 +17,12 @@ export function AppSidebarHeader({
                 <Breadcrumbs breadcrumbs={breadcrumbs} />
             </div>
             <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm" className="hidden sm:inline-flex" asChild>
+                <Button
+                    variant="outline"
+                    size="sm"
+                    className="hidden sm:inline-flex"
+                    asChild
+                >
                     <Link href="/uploads">
                         <Upload className="size-3.5" />
                         Unggah

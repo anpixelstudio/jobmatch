@@ -1,4 +1,8 @@
-export function ChatTypingBubble({ label = 'Jobmatch sedang mengetik' }: { label?: string }) {
+export function ChatTypingBubble({
+    label = 'Jobmatch sedang mengetik',
+}: {
+    label?: string;
+}) {
     return (
         <div className="flex justify-start" role="status" aria-live="polite">
             <div className="rounded-2xl rounded-bl-md bg-muted/35 px-4 py-3 ring-1 ring-teal-900/6 dark:ring-teal-400/10">
@@ -17,7 +21,9 @@ export function ChatTypingBubble({ label = 'Jobmatch sedang mengetik' }: { label
                             style={{ animationDelay: '300ms' }}
                         />
                     </span>
-                    <span className="text-xs text-muted-foreground">{label}</span>
+                    <span className="text-xs text-muted-foreground">
+                        {label}
+                    </span>
                 </div>
             </div>
         </div>

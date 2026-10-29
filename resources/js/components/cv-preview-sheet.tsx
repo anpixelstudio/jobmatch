@@ -157,7 +157,9 @@ export function CvPreviewSheet({ candidateId, open, onOpenChange }: Props) {
                             </div>
 
                             <div className="min-h-0 flex-1 overflow-hidden bg-muted/20">
-                                {tab === 'pdf' && candidate.has_pdf && candidate.pdf_url ? (
+                                {tab === 'pdf' &&
+                                candidate.has_pdf &&
+                                candidate.pdf_url ? (
                                     <iframe
                                         title={`PDF ${candidate.name}`}
                                         src={candidate.pdf_url}
@@ -167,12 +169,15 @@ export function CvPreviewSheet({ candidateId, open, onOpenChange }: Props) {
                                     <div className="h-full min-h-[70vh] overflow-y-auto p-4">
                                         <div className="mb-3 flex flex-wrap gap-1.5">
                                             {candidate.skills.map((s) => (
-                                                <Badge key={s} variant="secondary">
+                                                <Badge
+                                                    key={s}
+                                                    variant="secondary"
+                                                >
                                                     {s}
                                                 </Badge>
                                             ))}
                                         </div>
-                                        <pre className="whitespace-pre-wrap font-sans text-[13px] leading-relaxed text-foreground/90">
+                                        <pre className="font-sans text-[13px] leading-relaxed whitespace-pre-wrap text-foreground/90">
                                             {candidate.full_text ||
                                                 candidate.excerpt ||
                                                 'Teks CV tidak tersedia.'}
@@ -188,12 +193,16 @@ export function CvPreviewSheet({ candidateId, open, onOpenChange }: Props) {
                                     onClick={() => setStatus('shortlist')}
                                 >
                                     <Check className="size-3.5" />
-                                    {shortlisted ? 'Sudah dipilih' : 'Pilih / Shortlist'}
+                                    {shortlisted
+                                        ? 'Sudah dipilih'
+                                        : 'Pilih / Shortlist'}
                                 </Button>
                                 <Button
                                     variant="outline"
                                     onClick={() =>
-                                        router.visit(`/candidates/${candidate.id}`)
+                                        router.visit(
+                                            `/candidates/${candidate.id}`,
+                                        )
                                     }
                                 >
                                     <FileText className="size-3.5" />

@@ -28,8 +28,14 @@ export type SkillGapAnalysis = {
 
 export type CompareAnalysis = {
     type: 'compare';
-    left: SummaryAnalysis & { score?: number | null; gap?: SkillGapAnalysis | null };
-    right: SummaryAnalysis & { score?: number | null; gap?: SkillGapAnalysis | null };
+    left: SummaryAnalysis & {
+        score?: number | null;
+        gap?: SkillGapAnalysis | null;
+    };
+    right: SummaryAnalysis & {
+        score?: number | null;
+        gap?: SkillGapAnalysis | null;
+    };
     rows: {
         label: string;
         left: string;
@@ -78,7 +84,9 @@ export function SummaryPanel({ summary }: { summary: SummaryAnalysis }) {
             </p>
             <p className="mt-1 text-sm font-medium">{summary.name}</p>
             {summary.headline ? (
-                <p className="text-[11px] text-muted-foreground">{summary.headline}</p>
+                <p className="text-[11px] text-muted-foreground">
+                    {summary.headline}
+                </p>
             ) : null}
             <div className="mt-2 flex flex-wrap gap-1.5">
                 {summary.years != null ? (
@@ -96,7 +104,7 @@ export function SummaryPanel({ summary }: { summary: SummaryAnalysis }) {
                 ))}
             </div>
             {summary.summary ? (
-                <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground text-pretty">
+                <p className="mt-2 text-[11px] leading-relaxed text-pretty text-muted-foreground">
                     {summary.summary}
                 </p>
             ) : null}
@@ -125,11 +133,16 @@ export function SkillGapPanel({ gap }: { gap: SkillGapAnalysis }) {
                         <Check className="size-3" /> Sudah ada
                     </p>
                     {gap.matched.length === 0 ? (
-                        <p className="text-[11px] text-muted-foreground">Belum ada yang terpenuhi</p>
+                        <p className="text-[11px] text-muted-foreground">
+                            Belum ada yang terpenuhi
+                        </p>
                     ) : (
                         <ul className="space-y-1">
                             {gap.matched.map((item) => (
-                                <li key={item} className="text-[11px] leading-snug">
+                                <li
+                                    key={item}
+                                    className="text-[11px] leading-snug"
+                                >
                                     {item}
                                 </li>
                             ))}
@@ -141,11 +154,16 @@ export function SkillGapPanel({ gap }: { gap: SkillGapAnalysis }) {
                         <X className="size-3" /> Belum ada
                     </p>
                     {gap.missing.length === 0 ? (
-                        <p className="text-[11px] text-muted-foreground">Tidak ada gap signifikan</p>
+                        <p className="text-[11px] text-muted-foreground">
+                            Tidak ada gap signifikan
+                        </p>
                     ) : (
                         <ul className="space-y-1">
                             {gap.missing.map((item) => (
-                                <li key={item} className="text-[11px] leading-snug">
+                                <li
+                                    key={item}
+                                    className="text-[11px] leading-snug"
+                                >
                                     {item}
                                 </li>
                             ))}
@@ -157,7 +175,10 @@ export function SkillGapPanel({ gap }: { gap: SkillGapAnalysis }) {
             {gap.notes && gap.notes.length > 0 ? (
                 <ul className="mt-2 space-y-0.5">
                     {gap.notes.map((n) => (
-                        <li key={n} className="text-[11px] text-muted-foreground">
+                        <li
+                            key={n}
+                            className="text-[11px] text-muted-foreground"
+                        >
                             {n}
                         </li>
                     ))}
@@ -179,23 +200,36 @@ function ComparePanel({ analysis }: { analysis: CompareAnalysis }) {
 
             <div className="grid grid-cols-2 gap-px bg-teal-900/8 dark:bg-teal-400/10">
                 <div className="bg-background p-3">
-                    <p className="truncate text-xs font-semibold">{analysis.left.name}</p>
+                    <p className="truncate text-xs font-semibold">
+                        {analysis.left.name}
+                    </p>
                     <p className="text-[10px] text-muted-foreground">
-                        {analysis.left.score != null ? `${analysis.left.score}% match` : '—'}
+                        {analysis.left.score != null
+                            ? `${analysis.left.score}% match`
+                            : '—'}
                     </p>
                 </div>
                 <div className="bg-background p-3">
-                    <p className="truncate text-xs font-semibold">{analysis.right.name}</p>
+                    <p className="truncate text-xs font-semibold">
+                        {analysis.right.name}
+                    </p>
                     <p className="text-[10px] text-muted-foreground">
-                        {analysis.right.score != null ? `${analysis.right.score}% match` : '—'}
+                        {analysis.right.score != null
+                            ? `${analysis.right.score}% match`
+                            : '—'}
                     </p>
                 </div>
             </div>
 
             <div className="divide-y divide-teal-900/6 dark:divide-teal-400/10">
                 {analysis.rows.map((row) => (
-                    <div key={row.label} className="grid grid-cols-[5.5rem_1fr_1fr] gap-2 px-3 py-2.5 text-[11px]">
-                        <span className="font-medium text-muted-foreground">{row.label}</span>
+                    <div
+                        key={row.label}
+                        className="grid grid-cols-[5.5rem_1fr_1fr] gap-2 px-3 py-2.5 text-[11px]"
+                    >
+                        <span className="font-medium text-muted-foreground">
+                            {row.label}
+                        </span>
                         <span
                             className={
                                 row.winner === 'left'
@@ -221,10 +255,16 @@ function ComparePanel({ analysis }: { analysis: CompareAnalysis }) {
             {(analysis.left.gap || analysis.right.gap) && (
                 <div className="grid gap-2 border-t border-teal-900/8 p-3 sm:grid-cols-2 dark:border-teal-400/10">
                     {analysis.left.gap ? (
-                        <MiniGap name={analysis.left.name} gap={analysis.left.gap} />
+                        <MiniGap
+                            name={analysis.left.name}
+                            gap={analysis.left.gap}
+                        />
                     ) : null}
                     {analysis.right.gap ? (
-                        <MiniGap name={analysis.right.name} gap={analysis.right.gap} />
+                        <MiniGap
+                            name={analysis.right.name}
+                            gap={analysis.right.gap}
+                        />
                     ) : null}
                 </div>
             )}

@@ -72,13 +72,19 @@ export default function UploadsIndex({ jobs, queue }: Props) {
                 <div className="grid gap-4 lg:grid-cols-12">
                     <Card className="border-border/70 shadow-none lg:col-span-4">
                         <CardHeader className="pb-3">
-                            <CardTitle className="text-base">Parameter lowongan</CardTitle>
+                            <CardTitle className="text-base">
+                                Parameter lowongan
+                            </CardTitle>
                             <CardDescription>
                                 Dipakai sebagai konteks tambahan saat chat
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <Form action="/jobs" method="post" className="space-y-3">
+                            <Form
+                                action="/jobs"
+                                method="post"
+                                className="space-y-3"
+                            >
                                 <div className="space-y-1.5">
                                     <Label htmlFor="title">Posisi</Label>
                                     <Input
@@ -89,7 +95,9 @@ export default function UploadsIndex({ jobs, queue }: Props) {
                                     />
                                 </div>
                                 <div className="space-y-1.5">
-                                    <Label htmlFor="department">Departemen</Label>
+                                    <Label htmlFor="department">
+                                        Departemen
+                                    </Label>
                                     <Input
                                         id="department"
                                         name="department"
@@ -97,7 +105,9 @@ export default function UploadsIndex({ jobs, queue }: Props) {
                                     />
                                 </div>
                                 <div className="space-y-1.5">
-                                    <Label htmlFor="criteria_text">Persyaratan</Label>
+                                    <Label htmlFor="criteria_text">
+                                        Persyaratan
+                                    </Label>
                                     <textarea
                                         id="criteria_text"
                                         name="criteria_text"
@@ -107,11 +117,15 @@ export default function UploadsIndex({ jobs, queue }: Props) {
                                     />
                                 </div>
                                 <div className="space-y-1.5">
-                                    <Label htmlFor="skills">Skill wajib (pisah koma)</Label>
+                                    <Label htmlFor="skills">
+                                        Skill wajib (pisah koma)
+                                    </Label>
                                     <Input
                                         id="skills"
                                         value={skills}
-                                        onChange={(e) => setSkills(e.target.value)}
+                                        onChange={(e) =>
+                                            setSkills(e.target.value)
+                                        }
                                     />
                                     {skills
                                         .split(',')
@@ -145,7 +159,9 @@ export default function UploadsIndex({ jobs, queue }: Props) {
                                             key={j.id}
                                             className="rounded-lg border border-border/70 px-3 py-2 text-xs"
                                         >
-                                            <p className="font-medium">{j.title}</p>
+                                            <p className="font-medium">
+                                                {j.title}
+                                            </p>
                                             <p className="text-muted-foreground">
                                                 {j.department || '—'}
                                             </p>
@@ -159,7 +175,9 @@ export default function UploadsIndex({ jobs, queue }: Props) {
                     <div className="space-y-4 lg:col-span-8">
                         <Card className="border-border/70 shadow-none">
                             <CardHeader className="pb-3">
-                                <CardTitle className="text-base">Unggah file CV</CardTitle>
+                                <CardTitle className="text-base">
+                                    Unggah file CV
+                                </CardTitle>
                                 <CardDescription>
                                     PDF, DOCX, atau TXT — maks 20MB
                                 </CardDescription>
@@ -193,7 +211,9 @@ export default function UploadsIndex({ jobs, queue }: Props) {
                                     </label>
                                     <div className="grid gap-3 sm:grid-cols-2">
                                         <div className="space-y-1.5">
-                                            <Label htmlFor="job_opening_id">Lowongan</Label>
+                                            <Label htmlFor="job_opening_id">
+                                                Lowongan
+                                            </Label>
                                             <FieldSelect
                                                 name="job_opening_id"
                                                 value={jobId}
@@ -203,7 +223,9 @@ export default function UploadsIndex({ jobs, queue }: Props) {
                                             />
                                         </div>
                                         <div className="space-y-1.5">
-                                            <Label htmlFor="category">Kategori</Label>
+                                            <Label htmlFor="category">
+                                                Kategori
+                                            </Label>
                                             <Input
                                                 id="category"
                                                 name="category"
@@ -224,7 +246,9 @@ export default function UploadsIndex({ jobs, queue }: Props) {
 
                         <Card className="border-border/70 shadow-none">
                             <CardHeader className="pb-3">
-                                <CardTitle className="text-base">Antrean unggahan</CardTitle>
+                                <CardTitle className="text-base">
+                                    Antrean unggahan
+                                </CardTitle>
                                 <CardDescription>
                                     Status parse & kesiapan matching
                                 </CardDescription>
@@ -242,14 +266,18 @@ export default function UploadsIndex({ jobs, queue }: Props) {
                                         >
                                             <div className="min-w-0">
                                                 <p className="truncate text-sm font-medium">
-                                                    {item.original_filename || item.name}
+                                                    {item.original_filename ||
+                                                        item.name}
                                                 </p>
                                                 <p className="truncate text-xs text-muted-foreground">
-                                                    {item.category || '—'} · {item.created_at}
+                                                    {item.category || '—'} ·{' '}
+                                                    {item.created_at}
                                                 </p>
                                             </div>
                                             <div className="flex shrink-0 items-center gap-2">
-                                                <Badge variant="secondary">{item.status}</Badge>
+                                                <Badge variant="secondary">
+                                                    {item.status}
+                                                </Badge>
                                                 <Link
                                                     href={`/candidates/${item.id}`}
                                                     className="text-xs font-medium text-teal-800 hover:underline dark:text-teal-300"

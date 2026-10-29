@@ -151,7 +151,9 @@ export default function CandidatesIndex({
                                         </p>
                                     </div>
                                     <div className="flex shrink-0 flex-wrap gap-1.5">
-                                        <Badge variant="outline">{c.source}</Badge>
+                                        <Badge variant="outline">
+                                            {c.source}
+                                        </Badge>
                                         <Badge variant="secondary">
                                             {c.category || '—'}
                                         </Badge>

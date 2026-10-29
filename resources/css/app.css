@@ -145,6 +145,10 @@
 /* Jobmatch content canvas — slightly softer than pure flat */
 [data-slot='sidebar-inset'] {
     background:
-        radial-gradient(1200px 400px at 0% 0%, color-mix(in oklab, #0f766e 8%, transparent), transparent 55%),
+        radial-gradient(
+            1200px 400px at 0% 0%,
+            color-mix(in oklab, #0f766e 8%, transparent),
+            transparent 55%
+        ),
         var(--background);
 }

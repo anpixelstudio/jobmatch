@@ -94,9 +94,12 @@ export default function CandidateShow({ candidate }: Props) {
                         <Card className="overflow-hidden border-border/70 shadow-none">
                             <CardHeader className="flex-row items-center justify-between space-y-0 border-b border-border/60 pb-3">
                                 <div>
-                                    <CardTitle className="text-base">Preview CV</CardTitle>
+                                    <CardTitle className="text-base">
+                                        Preview CV
+                                    </CardTitle>
                                     <CardDescription>
-                                        {candidate.original_filename || 'Dokumen kandidat'}
+                                        {candidate.original_filename ||
+                                            'Dokumen kandidat'}
                                     </CardDescription>
                                 </div>
                                 <div className="flex gap-1.5">
@@ -136,7 +139,7 @@ export default function CandidateShow({ candidate }: Props) {
                                     />
                                 ) : (
                                     <div className="max-h-[70vh] overflow-y-auto p-4">
-                                        <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-muted-foreground">
+                                        <pre className="font-sans text-sm leading-relaxed whitespace-pre-wrap text-muted-foreground">
                                             {candidate.full_text ||
                                                 candidate.excerpt ||
                                                 'Teks CV tidak tersedia.'}
@@ -148,7 +151,9 @@ export default function CandidateShow({ candidate }: Props) {
 
                         <Card className="border-border/70 shadow-none">
                             <CardHeader className="pb-3">
-                                <CardTitle className="text-base">Skill terdeteksi</CardTitle>
+                                <CardTitle className="text-base">
+                                    Skill terdeteksi
+                                </CardTitle>
                             </CardHeader>
                             <CardContent className="flex flex-wrap gap-1.5">
                                 {candidate.skills.length === 0 ? (
@@ -168,7 +173,9 @@ export default function CandidateShow({ candidate }: Props) {
 
                     <Card className="h-fit border-border/70 shadow-none">
                         <CardHeader className="pb-3">
-                            <CardTitle className="text-base">Keputusan HR</CardTitle>
+                            <CardTitle className="text-base">
+                                Keputusan HR
+                            </CardTitle>
                             <CardDescription>
                                 Status tersimpan ke pipeline Jobmatch
                             </CardDescription>

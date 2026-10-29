@@ -14,7 +14,7 @@ export function PageHeader({ title, description, actions }: Props) {
                     {title}
                 </h1>
                 {description ? (
-                    <p className="max-w-2xl text-sm text-muted-foreground text-pretty">
+                    <p className="max-w-2xl text-sm text-pretty text-muted-foreground">
                         {description}
                     </p>
                 ) : null}
