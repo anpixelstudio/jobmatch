@@ -82,7 +82,7 @@ class UploadController extends Controller
             'review_status' => 'new',
         ]);
 
-        return back()->with('success', 'CV diunggah dan siap dicari oleh Aira Bot.');
+        return back()->with('success', 'CV diunggah dan siap dicari oleh Jobmatch.');
     }
 
     protected function extractText(string $path, string $extension): string

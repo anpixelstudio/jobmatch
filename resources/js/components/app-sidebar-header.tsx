@@ -26,7 +26,7 @@ export function AppSidebarHeader({
                 <Button size="sm" asChild>
                     <Link href="/chat">
                         <MessageSquare className="size-3.5" />
-                        Chat Aira
+                        Chat Jobmatch
                     </Link>
                 </Button>
             </div>

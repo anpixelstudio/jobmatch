@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<title>SaaS HR (Aira) — Flowchart, Fitur & Screenshots</title>
+<style>
+  @page { size: A4; margin: 12mm 11mm; }
+  :root {
+    --ink: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --teal: #0f766e;
+    --teal2: #14b8a6;
+    --soft: #f0fdfa;
+    --card: #f8fafc;
+    --orange: #c2410c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    font-size: 10pt;
+    line-height: 1.4;
+    margin: 0;
+  }
+  h1 { font-size: 20pt; margin: 0 0 4px; color: var(--teal); }
+  h2 {
+    font-size: 13pt; margin: 0 0 8px; padding: 6px 0 4px;
+    border-bottom: 2.5px solid var(--teal); color: var(--teal);
+    page-break-after: avoid;
+  }
+  h3 { font-size: 11pt; margin: 12px 0 6px; color: #115e59; page-break-after: avoid; }
+  p { margin: 6px 0; }
+  .muted { color: var(--muted); }
+  .badge {
+    display: inline-block; background: var(--teal); color: #fff;
+    font-size: 8pt; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 999px; margin-bottom: 8px;
+  }
+  .meta {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 10px; padding: 10px 12px; margin: 10px 0 14px;
+  }
+  .meta strong { display: block; font-size: 7.5pt; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .page { page-break-before: always; }
+  .page:first-child { page-break-before: auto; }
+
+  /* Flowchart boxes */
+  .fc { margin: 10px 0 14px; page-break-inside: avoid; }
+  .fc-row {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; margin: 6px 0;
+  }
+  .fc-node {
+    background: var(--soft); border: 1.5px solid #5eead4; color: #134e4a;
+    border-radius: 10px; padding: 8px 11px; min-width: 92px; max-width: 150px;
+    text-align: center; font-size: 8.5pt; font-weight: 700;
+  }
+  .fc-node small { display: block; font-weight: 500; color: var(--muted); margin-top: 2px; font-size: 7.5pt; }
+  .fc-start { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .fc-start small { color: #ccfbf1; }
+  .fc-end { background: #134e4a; border-color: #134e4a; color: #fff; }
+  .fc-end small { color: #99f6e4; }
+  .fc-decision {
+    background: #fff7ed; border: 1.5px solid #fb923c; color: var(--orange);
+    border-radius: 4px; transform: none; padding: 10px 14px;
+    font-weight: 700; font-size: 8.5pt; text-align: center; min-width: 120px;
+  }
+  .fc-process { background: #eff6ff; border-color: #93c5fd; color: #1e3a8a; }
+  .fc-io { background: #faf5ff; border-color: #d8b4fe; color: #6b21a8; }
+  .fc-arrow { color: var(--teal); font-weight: 800; font-size: 14pt; }
+  .fc-down { text-align: center; color: var(--teal); font-weight: 800; font-size: 14pt; line-height: 1; margin: 2px 0; }
+  .fc-legend {
+    display: flex; flex-wrap: wrap; gap: 10px; font-size: 8pt; color: var(--muted); margin: 6px 0 10px;
+  }
+  .fc-legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .swatch { width: 12px; height: 12px; border-radius: 3px; border: 1px solid #94a3b8; display: inline-block; }
+
+  .shot {
+    margin: 8px 0 16px; page-break-inside: avoid;
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #0b1220;
+  }
+  .shot img {
+    display: block; width: 100%; height: auto; max-height: 420px; object-fit: contain; object-position: top;
+    background: #0b1220;
+  }
+  .shot-cap {
+    background: #fff; border-top: 1px solid var(--line);
+    padding: 7px 10px; font-size: 8.5pt; color: var(--muted);
+  }
+  .shot-cap strong { color: var(--ink); }
+
+  .feat {
+    border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
+    background: var(--card); margin: 8px 0 12px; page-break-inside: avoid;
+  }
+  .feat h3 { margin-top: 0; }
+  ul { margin: 4px 0 8px 16px; padding: 0; }
+  li { margin: 2px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin: 8px 0 12px; }
+  th, td { border: 1px solid var(--line); padding: 5px 7px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .note {
+    background: #ecfeff; border-left: 4px solid var(--teal);
+    padding: 7px 10px; border-radius: 0 8px 8px 0; font-size: 9pt; margin: 8px 0;
+  }
+  .toc a { color: var(--teal); text-decoration: none; }
+  .toc li { margin: 4px 0; }
+  .footer {
+    margin-top: 16px; padding-top: 8px; border-top: 1px solid var(--line);
+    font-size: 8pt; color: var(--muted);
+  }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 8pt; background: #f1f5f9; padding: 1px 4px; border-radius: 3px; }
+  svg.diagram { width: 100%; height: auto; display: block; margin: 8px 0 12px; }
+</style>
+</head>
+<body>
+
+<!-- ========== COVER ========== -->
+<section class="page">
+  <div class="badge">Anpixel Studio · Product Documentation</div>
+  <h1>SaaS HR (Aira)</h1>
+  <p style="font-size:12pt;margin:0 0 8px;"><strong>Flowchart · Penjelasan Fitur · Screenshots</strong></p>
+  <p class="muted">Dokumen alur lengkap aplikasi matching CV berbasis chatbot untuk rekrutmen HR, dilengkapi tangkapan layar tiap modul.</p>
+
+  <div class="meta">
+    <div><strong>Product</strong>SaaS HR / Aira Resume Analyzer</div>
+    <div><strong>Repo publik</strong>github.com/anpixelstudio/saas-hr</div>
+    <div><strong>Stack</strong>Laravel · Inertia · React · shadcn · Gemini (opsional)</div>
+    <div><strong>Demo</strong>hr@aira.test / password</div>
+    <div><strong>Korpus</strong>~2.484 CV Kaggle + unggahan HR</div>
+    <div><strong>Lokasi file</strong>screenshots/saas-hr-flow-detail.pdf</div>
+  </div>
+
+  <h2>Daftar isi</h2>
+  <ol class="toc">
+    <li>Master flowchart — perjalanan HR</li>
+    <li>Flowchart chatbot & intent</li>
+    <li>Flowchart matching pipeline</li>
+    <li>Fitur Auth + screenshot</li>
+    <li>Fitur Dashboard + screenshot</li>
+    <li>Fitur Unggah CV & Lowongan + screenshot</li>
+    <li>Fitur Chatbot Matching + screenshot</li>
+    <li>Fitur Bank Kandidat + screenshot</li>
+    <li>Fitur Settings + screenshot</li>
+    <li>Ringkas data model & catatan teknis</li>
+  </ol>
+
+  <div class="fc-legend">
+    <span><i class="swatch" style="background:#0f766e"></i> Start / End</span>
+    <span><i class="swatch" style="background:#f0fdfa;border-color:#5eead4"></i> Proses UI</span>
+    <span><i class="swatch" style="background:#eff6ff;border-color:#93c5fd"></i> Proses sistem</span>
+    <span><i class="swatch" style="background:#fff7ed;border-color:#fb923c"></i> Keputusan</span>
+    <span><i class="swatch" style="background:#faf5ff;border-color:#d8b4fe"></i> Input / Output</span>
+  </div>
+</section>
+
+<!-- ========== 1 MASTER FLOW ========== -->
+<section class="page">
+  <h2>1. Master flowchart — perjalanan HR</h2>
+  <p>Alur utama dari login sampai shortlist kandidat.</p>
+
+  <svg class="diagram" viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#0f766e"/>
+      </marker>
+    </defs>
+    <!-- nodes -->
+    <rect x="280" y="10" width="160" height="44" rx="10" fill="#0f766e"/>
+    <text x="360" y="30" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="Helvetica">START</text>
+    <text x="360" y="46" text-anchor="middle" fill="#ccfbf1" font-size="10" font-family="Helvetica">Login / Register</text>
+
+    <rect x="280" y="80" width="160" height="44" rx="10" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+    <text x="360" y="100" text-anchor="middle" fill="#134e4a" font-size="12" font-weight="700" font-family="Helvetica">Dashboard</text>
+    <text x="360" y="116" text-anchor="middle" fill="#64748b" font-size="10" font-family="Helvetica">Ringkasan korpus & job</text>
+
+    <!-- 3 branches -->
+    <rect x="40" y="170" width="150" height="50" rx="10" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+    <text x="115" y="192" text-anchor="middle" fill="#134e4a" font-size="11" font-weight="700" font-family="Helvetica">Unggah CV</text>
+    <text x="115" y="208" text-anchor="middle" fill="#64748b" font-size="9" font-family="Helvetica">+ atur lowongan</text>
+
+    <rect x="285" y="170" width="150" height="50" rx="10" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+    <text x="360" y="192" text-anchor="middle" fill="#134e4a" font-size="11" font-weight="700" font-family="Helvetica">Chatbot</text>
+    <text x="360" y="208" text-anchor="middle" fill="#64748b" font-size="9" font-family="Helvetica">Kriteria natural language</text>
+
+    <rect x="530" y="170" width="150" height="50" rx="10" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+    <text x="605" y="192" text-anchor="middle" fill="#134e4a" font-size="11" font-weight="700" font-family="Helvetica">Bank Kandidat</text>
+    <text x="605" y="208" text-anchor="middle" fill="#64748b" font-size="9" font-family="Helvetica">Filter & browse CV</text>
+
+    <rect x="260" y="260" width="200" height="50" rx="10" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+    <text x="360" y="282" text-anchor="middle" fill="#1e3a8a" font-size="11" font-weight="700" font-family="Helvetica">Matching & Analisis</text>
+    <text x="360" y="298" text-anchor="middle" fill="#64748b" font-size="9" font-family="Helvetica">Rank · compare · skill gap</text>
+
+    <rect x="260" y="340" width="200" height="50" rx="10" fill="#faf5ff" stroke="#d8b4fe" stroke-width="1.5"/>
+    <text x="360" y="362" text-anchor="middle" fill="#6b21a8" font-size="11" font-weight="700" font-family="Helvetica">Preview CV Sheet</text>
+    <text x="360" y="378" text-anchor="middle" fill="#64748b" font-size="9" font-family="Helvetica">PDF / teks + detail</text>
+
+    <rect x="280" y="420" width="160" height="50" rx="10" fill="#134e4a"/>
+    <text x="360" y="442" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="Helvetica">END</text>
+    <text x="360" y="458" text-anchor="middle" fill="#99f6e4" font-size="10" font-family="Helvetica">Shortlist kandidat</text>
+
+    <!-- arrows -->
+    <line x1="360" y1="54" x2="360" y2="80" stroke="#0f766e" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="360" y1="124" x2="360" y2="155" stroke="#0f766e" stroke-width="2"/>
+    <line x1="115" y1="155" x2="605" y2="155" stroke="#0f766e" stroke-width="2"/>
+    <line x1="115" y1="155" x2="115" y2="170" stroke="#0f766e" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="360" y1="155" x2="360" y2="170" stroke="#0f766e" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="605" y1="155" x2="605" y2="170" stroke="#0f766e" stroke-width="2" marker-end="url(#arr)"/>
+
+    <line x1="115" y1="220" x2="115" y2="245" stroke="#0f766e" stroke-width="2"/>
+    <line x1="605" y1="220" x2="605" y2="245" stroke="#0f766e" stroke-width="2"/>
+    <line x1="115" y1="245" x2="605" y2="245" stroke="#0f766e" stroke-width="2"/>
+    <line x1="360" y1="220" x2="360" y2="260" stroke="#0f766e" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="360" y1="245" x2="360" y2="260" stroke="#0f766e" stroke-width="2"/>
+
+    <line x1="360" y1="310" x2="360" y2="340" stroke="#0f766e" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="360" y1="390" x2="360" y2="420" stroke="#0f766e" stroke-width="2" marker-end="url(#arr)"/>
+
+    <text x="200" y="148" fill="#64748b" font-size="9" font-family="Helvetica">opsional</text>
+    <text x="480" y="148" fill="#64748b" font-size="9" font-family="Helvetica">opsional</text>
+  </svg>
+
+  <div class="feat">
+    <h3>Penjelasan alur</h3>
+    <ol>
+      <li><strong>Login</strong> — HR masuk ke aplikasi (demo: <code>hr@aira.test</code>).</li>
+      <li><strong>Dashboard</strong> — melihat jumlah CV, lowongan aktif, aktivitas chat.</li>
+      <li><strong>Tiga pintu kerja</strong>: unggah CV/lowongan, chatbot matching, atau browse bank kandidat.</li>
+      <li><strong>Matching & analisis</strong> — sistem ranking + komparasi/skill gap.</li>
+      <li><strong>Preview CV</strong> — tinjau dokumen, lalu <strong>Shortlist</strong>.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== 2 CHAT INTENT ========== -->
+<section class="page">
+  <h2>2. Flowchart chatbot & intent</h2>
+  <p>Setiap pesan HR diarahkan ke intent, lalu ke service yang sesuai.</p>
+
+  <svg class="diagram" viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#0f766e"/>
+      </marker>
+    </defs>
+    <rect x="260" y="10" width="200" height="40" rx="10" fill="#0f766e"/>
+    <text x="360" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="Helvetica">HR kirim pesan chat</text>
+
+    <polygon points="360,70 440,110 360,150 280,110" fill="#fff7ed" stroke="#fb923c" stroke-width="1.5"/>
+    <text x="360" y="108" text-anchor="middle" fill="#c2410c" font-size="11" font-weight="700" font-family="Helvetica">Intent?</text>
+    <text x="360" y="122" text-anchor="middle" fill="#9a3412" font-size="9" font-family="Helvetica">router</text>
+
+    <!-- 6 intents -->
+    <rect x="20" y="200" width="100" height="48" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+    <text x="70" y="220" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700" font-family="Helvetica">search</text>
+    <text x="70" y="236" text-anchor="middle" fill="#64748b" font-size="8" font-family="Helvetica">matching</text>
+
+    <rect x="130" y="200" width="100" height="48" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+    <text x="180" y="220" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700" font-family="Helvetica">compare</text>
+    <text x="180" y="236" text-anchor="middle" fill="#64748b" font-size="8" font-family="Helvetica">2 kandidat</text>
+
+    <rect x="240" y="200" width="100" height="48" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+    <text x="290" y="220" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700" font-family="Helvetica">skill_gap</text>
+    <text x="290" y="236" text-anchor="middle" fill="#64748b" font-size="8" font-family="Helvetica">gap vs kriteria</text>
+
+    <rect x="350" y="200" width="100" height="48" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+    <text x="400" y="220" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700" font-family="Helvetica">summarize</text>
+    <text x="400" y="236" text-anchor="middle" fill="#64748b" font-size="8" font-family="Helvetica">ringkasan</text>
+
+    <rect x="460" y="200" width="100" height="48" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+    <text x="510" y="220" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700" font-family="Helvetica">explain</text>
+    <text x="510" y="236" text-anchor="middle" fill="#64748b" font-size="8" font-family="Helvetica">alasan rank</text>
+
+    <rect x="570" y="200" width="120" height="48" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+    <text x="630" y="220" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700" font-family="Helvetica">chitchat</text>
+    <text x="630" y="236" text-anchor="middle" fill="#64748b" font-size="8" font-family="Helvetica">balasan ringan</text>
+
+    <rect x="40" y="300" width="200" height="48" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+    <text x="140" y="320" text-anchor="middle" fill="#134e4a" font-size="11" font-weight="700" font-family="Helvetica">ResumeMatcher</text>
+    <text x="140" y="336" text-anchor="middle" fill="#64748b" font-size="9" font-family="Helvetica">score skill · praktik · kategori</text>
+
+    <rect x="270" y="300" width="220" height="48" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+    <text x="380" y="320" text-anchor="middle" fill="#134e4a" font-size="11" font-weight="700" font-family="Helvetica">CandidateAnalyzer</text>
+    <text x="380" y="336" text-anchor="middle" fill="#64748b" font-size="9" font-family="Helvetica">compare · gap · summarize</text>
+
+    <rect x="520" y="300" width="160" height="48" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+    <text x="600" y="320" text-anchor="middle" fill="#134e4a" font-size="11" font-weight="700" font-family="Helvetica">Local reply</text>
+    <text x="600" y="336" text-anchor="middle" fill="#64748b" font-size="9" font-family="Helvetica">+ Gemini opsional 8s</text>
+
+    <rect x="200" y="400" width="320" height="48" rx="8" fill="#faf5ff" stroke="#d8b4fe" stroke-width="1.5"/>
+    <text x="360" y="420" text-anchor="middle" fill="#6b21a8" font-size="11" font-weight="700" font-family="Helvetica">UI: kartu + panel match + aksi</text>
+    <text x="360" y="436" text-anchor="middle" fill="#64748b" font-size="9" font-family="Helvetica">Preview CV · Shortlist · chips</text>
+
+    <line x1="360" y1="50" x2="360" y2="70" stroke="#0f766e" stroke-width="2" marker-end="url(#arr2)"/>
+    <line x1="360" y1="150" x2="360" y2="175" stroke="#0f766e" stroke-width="2"/>
+    <line x1="70" y1="175" x2="630" y2="175" stroke="#0f766e" stroke-width="2"/>
+    <line x1="70" y1="175" x2="70" y2="200" stroke="#0f766e" stroke-width="2" marker-end="url(#arr2)"/>
+    <line x1="180" y1="175" x2="180" y2="200" stroke="#0f766e" stroke-width="2" marker-end="url(#arr2)"/>
+    <line x1="290" y1="175" x2="290" y2="200" stroke="#0f766e" stroke-width="2" marker-end="url(#arr2)"/>
+    <line x1="400" y1="175" x2="400" y2="200" stroke="#0f766e" stroke-width="2" marker-end="url(#arr2)"/>
+    <line x1="510" y1="175" x2="510" y2="200" stroke="#0f766e" stroke-width="2" marker-end="url(#arr2)"/>
+    <line x1="630" y1="175" x2="630" y2="200" stroke="#0f766e" stroke-width="2" marker-end="url(#arr2)"/>
+
+    <line x1="70" y1="248" x2="70" y2="275" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="70" y1="275" x2="140" y2="275" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="140" y1="275" x2="140" y2="300" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+    <line x1="180" y1="248" x2="180" y2="275" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="290" y1="248" x2="290" y2="275" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="400" y1="248" x2="400" y2="275" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="180" y1="275" x2="400" y2="275" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="380" y1="275" x2="380" y2="300" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+    <line x1="510" y1="248" x2="510" y2="275" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="630" y1="248" x2="630" y2="275" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="510" y1="275" x2="630" y2="275" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="600" y1="275" x2="600" y2="300" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+    <line x1="140" y1="348" x2="140" y2="380" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="380" y1="348" x2="380" y2="380" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="600" y1="348" x2="600" y2="380" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="140" y1="380" x2="600" y2="380" stroke="#0f766e" stroke-width="1.5"/>
+    <line x1="360" y1="380" x2="360" y2="400" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arr2)"/>
+  </svg>
+
+  <table>
+    <thead><tr><th>Intent</th><th>Contoh input HR</th><th>Service</th><th>Output UI</th></tr></thead>
+    <tbody>
+      <tr><td><code>search</code></td><td>“IT Python SQL min 3 tahun”</td><td>ResumeMatcher</td><td>Kartu rekomendasi + panel skor</td></tr>
+      <tr><td><code>compare</code></td><td>“Bandingkan peringkat 1 dan 2”</td><td>CandidateAnalyzer</td><td>Tabel komparasi siapa unggul</td></tr>
+      <tr><td><code>skill_gap</code></td><td>“skill gap #1” / ID kandidat</td><td>CandidateAnalyzer</td><td>Sudah ada vs Belum ada</td></tr>
+      <tr><td><code>summarize</code></td><td>“ringkas kandidat ini”</td><td>CandidateAnalyzer</td><td>Ringkasan kualifikasi</td></tr>
+      <tr><td><code>explain</code></td><td>“kenapa #1 cocok?”</td><td>Analyzer / local</td><td>Alasan ranking</td></tr>
+      <tr><td><code>chitchat</code></td><td>“halo”, “terima kasih”</td><td>Local (+ Gemini)</td><td>Balasan ringan</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ========== 3 MATCHING PIPELINE ========== -->
+<section class="page">
+  <h2>3. Flowchart matching pipeline</h2>
+  <p>Detail proses <code>search</code> dari query sampai ranking.</p>
+
+  <div class="fc">
+    <div class="fc-row">
+      <div class="fc-node fc-io">Query HR<small>teks + optional job lock</small></div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-process">Parse kriteria<small>skill · kategori · years</small></div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-process">Scan korpus<small>Candidate.raw_text</small></div>
+    </div>
+    <div class="fc-down">↓</div>
+    <div class="fc-row">
+      <div class="fc-node fc-process">Score skill praktik<small>bukan teach-only</small></div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-process">Boost kategori<small>IT / HR / dll</small></div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-process">Gate pengalaman<small>min. N tahun</small></div>
+    </div>
+    <div class="fc-down">↓</div>
+    <div class="fc-row">
+      <div class="fc-decision">Gemini?<small>timeout 8s</small></div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node">Enrich jawaban<small>atau fallback lokal</small></div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-end">Rank top-N<small>kartu + panel kanan</small></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Aturan kualitas ranking:</strong> pengalaman praktik diutamakan dibanding CV “instructor/mengajar saja”.
+    Kategori yang cocok mendapat skor tambahan. Gemini tidak boleh menggantung chat — bila 503/timeout, balasan lokal tetap dikirim.
+  </div>
+
+  <h3>Contoh happy path</h3>
+  <ol>
+    <li>HR: “Saya butuh kandidat IT yang kuat di Python dan SQL, minimal 3 tahun”</li>
+    <li>Intent = <code>search</code> → ResumeMatcher</li>
+    <li>Hasil: 10 kandidat, 5 ditampilkan di chat, sisanya di panel</li>
+    <li>HR klik “Bandingkan 1 vs 2” → intent <code>compare</code></li>
+    <li>HR klik Preview CV → sheet PDF/teks → Shortlist</li>
+  </ol>
+</section>
+
+<!-- ========== 4 AUTH ========== -->
+<section class="page">
+  <h2>4. Fitur Auth</h2>
+  <div class="feat">
+    <h3>Apa fungsinya?</h3>
+    <ul>
+      <li>Login email/password atau passkey</li>
+      <li>Register akun baru</li>
+      <li>Forgot password & session logout</li>
+      <li>Guest di <code>/</code> dialihkan ke login</li>
+    </ul>
+    <h3>Flow singkat</h3>
+    <div class="fc-row">
+      <div class="fc-node fc-start">Guest</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node">Login / Register</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-process">Session Fortify</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-end">Dashboard</div>
+    </div>
+  </div>
+
+  <div class="shot">
+    <img src="01-auth/02-login.png" alt="Login" />
+    <div class="shot-cap"><strong>Login</strong> — <code>/login</code> · email, password, passkey, remember me</div>
+  </div>
+  <div class="shot">
+    <img src="01-auth/03-register.png" alt="Register" />
+    <div class="shot-cap"><strong>Register</strong> — <code>/register</code> · nama, email, password, konfirmasi</div>
+  </div>
+</section>
+
+<!-- ========== 5 DASHBOARD ========== -->
+<section class="page">
+  <h2>5. Fitur Dashboard</h2>
+  <div class="feat">
+    <h3>Apa fungsinya?</h3>
+    <ul>
+      <li>Ringkasan korpus: CV siap matching, antrean parse, lowongan aktif, query chat 7 hari</li>
+      <li>Distribusi kategori CV (Kaggle + upload)</li>
+      <li>Shortcut cepat: Chat kriteria, Unggah CV, Lihat kandidat</li>
+      <li>Daftar lowongan tersimpan & kandidat terbaru</li>
+    </ul>
+    <h3>Flow singkat</h3>
+    <div class="fc-row">
+      <div class="fc-node fc-start">Login sukses</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node">Dashboard</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node">Pilih aksi</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-io">Chat / Unggah / Kandidat</div>
+    </div>
+  </div>
+  <div class="shot">
+    <img src="02-dashboard/01-dashboard.png" alt="Dashboard" />
+    <div class="shot-cap"><strong>Dashboard</strong> — <code>/dashboard</code> · metrik, distribusi kategori, alur cepat screening</div>
+  </div>
+  <div class="shot">
+    <img src="07-flows/01-user-menu.png" alt="User menu" />
+    <div class="shot-cap"><strong>User menu</strong> — Settings & Log out dari sidebar profil</div>
+  </div>
+</section>
+
+<!-- ========== 6 UPLOADS ========== -->
+<section class="page">
+  <h2>6. Fitur Unggah CV & Lowongan</h2>
+  <div class="feat">
+    <h3>Apa fungsinya?</h3>
+    <ul>
+      <li>Buat/simpan parameter lowongan (posisi, departemen, persyaratan, skill wajib)</li>
+      <li>Upload file CV (PDF / DOCX / TXT, maks ~20MB)</li>
+      <li>Opsional tautkan CV ke lowongan + kategori</li>
+      <li>Indeks teks agar ikut matching di chatbot</li>
+    </ul>
+    <h3>Flowchart</h3>
+    <div class="fc-row">
+      <div class="fc-node fc-io">Isi job form</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node">Simpan lowongan</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-io">Pilih file CV</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node">Tautkan job?</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-process">Parse & indeks</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-end">Siap di Chat</div>
+    </div>
+  </div>
+  <div class="shot">
+    <img src="05-uploads/01-uploads.png" alt="Uploads" />
+    <div class="shot-cap"><strong>Unggah CV & Lowongan</strong> — <code>/uploads</code> · form job kiri, upload kanan, antrean parse</div>
+  </div>
+  <div class="shot">
+    <img src="05-uploads/02-job-select.png" alt="Job select" />
+    <div class="shot-cap"><strong>Dropdown lowongan</strong> — pilih “tanpa lowongan” atau job tersimpan saat upload</div>
+  </div>
+</section>
+
+<!-- ========== 7 CHAT ========== -->
+<section class="page">
+  <h2>7. Fitur Chatbot Matching</h2>
+  <div class="feat">
+    <h3>Apa fungsinya?</h3>
+    <ul>
+      <li>Matching kriteria bahasa natural (skill, kategori, pengalaman)</li>
+      <li>Ringkasan kualifikasi, komparasi 2 kandidat, skill gap</li>
+      <li>Panel kanan “Hasil match” sinkron dengan jawaban terakhir</li>
+      <li>Lock lowongan di composer (FieldSelect naik ke atas agar tidak terpotong)</li>
+      <li>Quick chips: template query & aksi analisis</li>
+      <li>Preview CV + Shortlist dari kartu</li>
+    </ul>
+  </div>
+  <div class="shot">
+    <img src="03-chat/01-chat-main.png" alt="Chat main" />
+    <div class="shot-cap"><strong>Chat utama</strong> — <code>/chat</code> · rekomendasi, alasan cocok, panel hasil match, chips & composer</div>
+  </div>
+</section>
+
+<section class="page">
+  <h2>7b. Chat — select lowongan & preview CV</h2>
+  <div class="shot">
+    <img src="03-chat/02-chat-job-select.png" alt="Job select chat" />
+    <div class="shot-cap"><strong>Select lowongan di composer</strong> — Tanpa lowongan / HR Assistant / Senior Data Analyst</div>
+  </div>
+  <div class="shot">
+    <img src="03-chat/03-cv-preview.png" alt="CV preview chat" />
+    <div class="shot-cap"><strong>Preview CV dari chat</strong> — sheet kanan, mode PDF/Teks, shortlist, halaman penuh</div>
+  </div>
+</section>
+
+<!-- ========== 8 CANDIDATES ========== -->
+<section class="page">
+  <h2>8. Fitur Bank Kandidat</h2>
+  <div class="feat">
+    <h3>Apa fungsinya?</h3>
+    <ul>
+      <li>Browse seluruh korpus CV (Kaggle + upload)</li>
+      <li>Cari teks (skill/posisi/kata kunci)</li>
+      <li>Filter kategori & sumber, lalu Terapkan</li>
+      <li>Pagination korpus besar</li>
+      <li>Klik baris → preview sheet (sama komponen dengan chat)</li>
+    </ul>
+    <h3>Flowchart</h3>
+    <div class="fc-row">
+      <div class="fc-node fc-start">/candidates</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-io">q / kategori / sumber</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-process">Inertia filter</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node">List</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-end">Preview sheet</div>
+    </div>
+  </div>
+  <div class="shot">
+    <img src="04-candidates/01-list.png" alt="Candidates list" />
+    <div class="shot-cap"><strong>List kandidat</strong> — <code>/candidates</code> · search, filter, badge sumber/kategori/status</div>
+  </div>
+</section>
+
+<section class="page">
+  <h2>8b. Kandidat — dropdown, filter, preview</h2>
+  <div class="shot">
+    <img src="04-candidates/03-dropdown-category.png" alt="Category dropdown" />
+    <div class="shot-cap"><strong>Dropdown kategori</strong> — FieldSelect scrollable (Accountant … Teacher)</div>
+  </div>
+  <div class="shot">
+    <img src="04-candidates/02-filter-category.png" alt="Filtered IT" />
+    <div class="shot-cap"><strong>Hasil filter Information Technology</strong> — list hanya kandidat IT</div>
+  </div>
+</section>
+
+<section class="page">
+  <h2>8c. Preview CV dari bank kandidat</h2>
+  <div class="shot">
+    <img src="04-candidates/04-cv-preview.png" alt="Candidates CV preview" />
+    <div class="shot-cap"><strong>Preview sheet kandidat</strong> — PDF viewer, shortlist, buka halaman penuh</div>
+  </div>
+</section>
+
+<!-- ========== 9 SETTINGS ========== -->
+<section class="page">
+  <h2>9. Fitur Settings</h2>
+  <div class="feat">
+    <h3>Apa fungsinya?</h3>
+    <ul>
+      <li><strong>Profile</strong> — ubah nama & email, hapus akun</li>
+      <li><strong>Confirm password</strong> — gate sebelum area sensitif</li>
+      <li><strong>Security</strong> — ganti password, 2FA, passkeys</li>
+      <li><strong>Appearance</strong> — tema Light / Dark / System</li>
+    </ul>
+    <h3>Flowchart</h3>
+    <div class="fc-row">
+      <div class="fc-node">User menu</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node">Settings</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-decision">Security?</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-process">Confirm password</div>
+      <div class="fc-arrow">→</div>
+      <div class="fc-node fc-end">Security page</div>
+    </div>
+  </div>
+  <div class="two">
+    <div class="shot">
+      <img src="06-settings/01-appearance.png" alt="Appearance" />
+      <div class="shot-cap"><strong>Appearance</strong></div>
+    </div>
+    <div class="shot">
+      <img src="06-settings/02-profile.png" alt="Profile" />
+      <div class="shot-cap"><strong>Profile</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <h2>9b. Confirm password & Security</h2>
+  <div class="shot">
+    <img src="06-settings/03-confirm-password.png" alt="Confirm password" />
+    <div class="shot-cap"><strong>Confirm password</strong> — <code>/user/confirm-password</code> · gate keamanan</div>
+  </div>
+  <div class="shot">
+    <img src="06-settings/04-security.png" alt="Security" />
+    <div class="shot-cap"><strong>Security</strong> — password, 2FA, passkeys</div>
+  </div>
+</section>
+
+<!-- ========== 10 DATA ========== -->
+<section class="page">
+  <h2>10. Data model & catatan teknis</h2>
+  <table>
+    <thead><tr><th>Entity</th><th>Peran di flow</th></tr></thead>
+    <tbody>
+      <tr><td>User</td><td>Akun HR (auth, settings)</td></tr>
+      <tr><td>Candidate</td><td>CV terindeks: kategori, sumber, raw_text, review_status</td></tr>
+      <tr><td>JobOpening</td><td>Parameter lowongan untuk lock di chat / upload</td></tr>
+      <tr><td>ChatThread / ChatMessage</td><td>Sesi chat + meta analisis (matches, compare, gap)</td></tr>
+      <tr><td>MatchResult</td><td>Jejak skor matching</td></tr>
+    </tbody>
+  </table>
+
+  <div class="feat">
+    <h3>Catatan teknis penting</h3>
+    <ul>
+      <li>Panel match membaca assistant <strong>terakhir</strong> (order by id desc) agar tidak stuck hasil search lama setelah compare.</li>
+      <li>Filter kandidat: Inertia <code>router.get</code> + <code>preserveScroll</code> (hindari stale list).</li>
+      <li>Composer chat: FieldSelect <code>side="top"</code> supaya dropdown tidak terpotong.</li>
+      <li>Gemini opsional non-blocking (timeout 8 detik).</li>
+    </ul>
+  </div>
+
+  <h3>Indeks screenshot dalam PDF ini</h3>
+  <table>
+    <thead><tr><th>Modul</th><th>File</th></tr></thead>
+    <tbody>
+      <tr><td>Auth</td><td>01-auth/02-login.png, 03-register.png</td></tr>
+      <tr><td>Dashboard / menu</td><td>02-dashboard/01-dashboard.png, 07-flows/01-user-menu.png</td></tr>
+      <tr><td>Chat</td><td>03-chat/01–03 (main, job select, preview)</td></tr>
+      <tr><td>Kandidat</td><td>04-candidates/01–04 (list, filter, dropdown, preview)</td></tr>
+      <tr><td>Unggah</td><td>05-uploads/01–02</td></tr>
+      <tr><td>Settings</td><td>06-settings/01–04</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    Anpixel Studio · SaaS HR (Aira) · Flowchart + Fitur + Screenshots ·
+    https://github.com/anpixelstudio/saas-hr · Folder <code>screenshots/</code>
+  </div>
+</section>
+
+</body>
+</html>

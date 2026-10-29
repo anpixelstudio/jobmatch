@@ -116,7 +116,7 @@ export default function Dashboard({ stats, categoryDist, jobs, recent }: Props) 
                                 <EmptyHint>
                                     Belum ada data. Jalankan{' '}
                                     <code className="rounded bg-muted px-1.5 py-0.5 text-xs">
-                                        php artisan aira:import-kaggle
+                                        php artisan jobmatch:import-kaggle
                                     </code>
                                 </EmptyHint>
                             ) : (
@@ -158,7 +158,7 @@ export default function Dashboard({ stats, categoryDist, jobs, recent }: Props) 
                                 asChild
                             >
                                 <Link href="/chat">
-                                    Chat kriteria ke Aira
+                                    Chat kriteria ke Jobmatch
                                     <MessageSquare className="size-4 opacity-80" />
                                 </Link>
                             </Button>

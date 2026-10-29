@@ -108,7 +108,7 @@ PROMPT;
         ], JSON_UNESCAPED_UNICODE);
 
         $prompt = <<<PROMPT
-Kamu adalah Aira, asisten rekrutmen HR. Bahasa Indonesia, profesional, ringkas.
+Kamu adalah Jobmatch, asisten rekrutmen HR. Bahasa Indonesia, profesional, ringkas.
 
 Tugas: tulis HANYA dua kalimat pendek. Daftar kandidat sudah digambar UI — jangan tulis ulang.
 

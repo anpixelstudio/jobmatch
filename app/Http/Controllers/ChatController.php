@@ -201,7 +201,7 @@ class ChatController extends Controller
 
         if ($intent === 'chitchat') {
             $structured = [
-                'opening' => 'Halo. Saya Aira — asisten matching HR.',
+                'opening' => 'Halo. Saya Jobmatch — asisten matching HR.',
                 'highlights' => [],
                 'closing' => 'Coba: cari IT Python · bandingkan 2 ID CV · skill gap kandidat vs syarat · ringkas kualifikasi.',
             ];

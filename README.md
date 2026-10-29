@@ -1,4 +1,4 @@
-# Aira — AI Resume Analyzer
+# Jobmatch — AI Resume Matcher
 
 Laravel 13 + Inertia React + shadcn. HR chat kriteria → matching CV (Kaggle + unggahan).
 
@@ -12,7 +12,7 @@ cp .env.example .env   # jika belum ada
 php artisan key:generate
 touch database/database.sqlite
 php artisan migrate --seed
-php artisan aira:import-kaggle
+php artisan jobmatch:import-kaggle
 bun run build
 php artisan serve
 ```
@@ -26,7 +26,7 @@ composer run dev
 
 ## Login demo
 
-- Email: `hr@aira.test`
+- Email: `hr@jobmatch.test`
 - Password: `password`
 
 ## Google AI Studio (Gemini)
@@ -45,8 +45,8 @@ Chatbot memakai Gemini untuk ekstrak kriteria + balasan natural language. Rankin
 Default path import: `../04. Data/dataset-cv` (relatif dari folder app = `../../04. Data/dataset-cv` dari `base_path()`).
 
 ```bash
-php artisan aira:import-kaggle
-php artisan aira:import-kaggle --limit=200   # sample cepat
+php artisan jobmatch:import-kaggle
+php artisan jobmatch:import-kaggle --limit=200   # sample cepat
 ```
 
 ## Halaman
@@ -55,7 +55,11 @@ php artisan aira:import-kaggle --limit=200   # sample cepat
 | --- | --- |
 | `/dashboard` | Metrik, kategori, lowongan |
 | `/uploads` | Parameter job + unggah CV |
-| `/chat` | Aira Bot: kriteria → list CV match |
+| `/chat` | Jobmatch Bot: kriteria → list CV match |
 | `/candidates` | Bank kandidat + detail + status ATS |
 
-Prototipe HTML lama: `template.html`.
+## Deploy
+
+- Live: https://hr.maheskanoko.com
+- Repo: https://github.com/anpixelstudio/saas-hr
+- CI/CD: push `main` → GitHub Actions → VM website-mahes

@@ -1,4 +1,4 @@
-name: Deploy SaaS HR
+name: Deploy Jobmatch
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: deploy-saas-hr
+  group: deploy-jobmatch
   cancel-in-progress: true
 
 permissions:
@@ -42,7 +42,7 @@ jobs:
 
       - name: Pack release
         run: |
-          COPYFILE_DISABLE=1 tar -czf /tmp/saas-hr-release.tar.gz \
+          COPYFILE_DISABLE=1 tar -czf /tmp/jobmatch-release.tar.gz \
             --exclude=node_modules \
             --exclude=.git \
             --exclude=screenshots \
@@ -79,6 +79,6 @@ jobs:
 
       - name: Upload & activate release
         run: |
-          scp /tmp/saas-hr-release.tar.gz website-mahes:/tmp/saas-hr-release.tar.gz
-          scp deploy/remote.sh website-mahes:/tmp/saas-hr-remote.sh
-          ssh website-mahes 'bash /tmp/saas-hr-remote.sh'
+          scp /tmp/jobmatch-release.tar.gz website-mahes:/tmp/jobmatch-release.tar.gz
+          scp deploy/remote.sh website-mahes:/tmp/jobmatch-remote.sh
+          ssh website-mahes 'bash /tmp/jobmatch-remote.sh'

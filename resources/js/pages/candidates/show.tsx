@@ -61,7 +61,7 @@ export default function CandidateShow({ candidate }: Props) {
                             <Button size="sm" asChild>
                                 <Link href="/chat">
                                     <MessageSquare className="size-3.5" />
-                                    Tanya Aira
+                                    Tanya Jobmatch
                                 </Link>
                             </Button>
                         </>
@@ -170,7 +170,7 @@ export default function CandidateShow({ candidate }: Props) {
                         <CardHeader className="pb-3">
                             <CardTitle className="text-base">Keputusan HR</CardTitle>
                             <CardDescription>
-                                Status tersimpan ke pipeline Aira
+                                Status tersimpan ke pipeline Jobmatch
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-2">

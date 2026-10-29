@@ -128,7 +128,7 @@ export default function ChatIndex({
                     <div className="min-w-0">
                         <div className="flex items-center gap-2">
                             <h1 className="truncate text-lg font-semibold tracking-tight md:text-xl">
-                                Aira Chat
+                                Jobmatch Chat
                             </h1>
                             <span className="hidden rounded-full bg-teal-800/10 px-2 py-0.5 text-[10px] font-medium text-teal-900 sm:inline dark:text-teal-200">
                                 {stats.ready_candidates.toLocaleString('id-ID')} CV
@@ -168,7 +168,7 @@ export default function ChatIndex({
                                 />
                             </div>
                             <div className="min-w-0 flex-1">
-                                <p className="text-sm font-medium">Aira</p>
+                                <p className="text-sm font-medium">Jobmatch</p>
                                 <p className="truncate text-[11px] text-muted-foreground">
                                     {isTyping
                                         ? 'Sedang menganalisis kriteria…'
@@ -204,7 +204,7 @@ export default function ChatIndex({
                                 />
                             ) : null}
                             {isTyping ? (
-                                <ChatTypingBubble label="Aira sedang mengetik…" />
+                                <ChatTypingBubble label="Jobmatch sedang mengetik…" />
                             ) : null}
                             <div ref={bottomRef} />
                         </div>
@@ -427,7 +427,7 @@ function EmptyState({
                     Mau cari kandidat seperti apa?
                 </p>
                 <p className="text-sm text-muted-foreground text-pretty">
-                    Aira mencocokkan dari {count.toLocaleString('id-ID')} CV siap pakai.
+                    Jobmatch mencocokkan dari {count.toLocaleString('id-ID')} CV siap pakai.
                     Pilih contoh atau ketik kriteria sendiri.
                 </p>
             </div>

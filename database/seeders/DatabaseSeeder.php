@@ -11,8 +11,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        User::query()->where('email', 'hr@aira.test')->update(['email' => 'hr@jobmatch.test']);
+
         $user = User::query()->updateOrCreate(
-            ['email' => 'hr@aira.test'],
+            ['email' => 'hr@jobmatch.test'],
             [
                 'name' => 'Siti Rahmawati',
                 'password' => Hash::make('password'),

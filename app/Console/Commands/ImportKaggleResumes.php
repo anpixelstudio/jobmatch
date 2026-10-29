@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class ImportKaggleResumes extends Command
 {
-    protected $signature = 'aira:import-kaggle
+    protected $signature = 'jobmatch:import-kaggle
         {--path= : Path ke folder dataset-cv}
         {--limit=0 : Batasi jumlah baris (0 = semua)}';
 
