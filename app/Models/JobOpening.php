@@ -25,11 +25,13 @@ class JobOpening extends Model
         ];
     }
 
+    /** @return BelongsTo<User, $this> */
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    /** @return HasMany<Candidate, $this> */
     public function candidates(): HasMany
     {
         return $this->hasMany(Candidate::class);

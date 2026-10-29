@@ -64,10 +64,11 @@ class ImportKaggleResumes extends Command
                 continue;
             }
 
-            $data = array_combine($header, $row);
-            if ($data === false) {
+            if (count($header) !== count($row)) {
                 continue;
             }
+
+            $data = array_combine($header, $row);
 
             $externalId = (string) ($data['ID'] ?? '');
             if ($externalId === '') {

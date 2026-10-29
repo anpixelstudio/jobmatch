@@ -33,16 +33,19 @@ class Candidate extends Model
         ];
     }
 
+    /** @return BelongsTo<JobOpening, $this> */
     public function jobOpening(): BelongsTo
     {
         return $this->belongsTo(JobOpening::class);
     }
 
+    /** @return BelongsTo<User, $this> */
     public function uploader(): BelongsTo
     {
         return $this->belongsTo(User::class, 'uploaded_by');
     }
 
+    /** @return HasMany<MatchResult, $this> */
     public function matchResults(): HasMany
     {
         return $this->hasMany(MatchResult::class);

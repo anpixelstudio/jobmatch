@@ -14,16 +14,19 @@ class ChatThread extends Model
         'title',
     ];
 
+    /** @return BelongsTo<User, $this> */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /** @return BelongsTo<JobOpening, $this> */
     public function jobOpening(): BelongsTo
     {
         return $this->belongsTo(JobOpening::class);
     }
 
+    /** @return HasMany<ChatMessage, $this> */
     public function messages(): HasMany
     {
         return $this->hasMany(ChatMessage::class)->orderBy('id');

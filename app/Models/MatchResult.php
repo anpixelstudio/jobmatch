@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property array<int|string, mixed>|null $reasons_json
+ * @property-read Candidate|null $candidate
+ */
 class MatchResult extends Model
 {
     protected $fillable = [
@@ -22,11 +26,13 @@ class MatchResult extends Model
         ];
     }
 
+    /** @return BelongsTo<ChatMessage, $this> */
     public function message(): BelongsTo
     {
         return $this->belongsTo(ChatMessage::class, 'chat_message_id');
     }
 
+    /** @return BelongsTo<Candidate, $this> */
     public function candidate(): BelongsTo
     {
         return $this->belongsTo(Candidate::class);
