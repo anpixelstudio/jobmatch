@@ -125,5 +125,3 @@ class Candidate extends Model
         );
     }
 }
-
-
